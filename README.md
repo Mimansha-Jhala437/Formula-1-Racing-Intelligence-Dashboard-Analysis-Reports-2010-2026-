@@ -27,7 +27,7 @@ The **Formula 1 Racing Intelligence Dashboard & Reports** is a high-performance 
 By integrating modern web engineering with advanced Business Intelligence (BI) dashboards, this application delivers real-time and historical insights on driver standings, constructor championships, pit-stop strategies, lap-time evolutions, and circuit telemetry.
 
 * **🌐 Live Deployment:** [https://formula-1-racing-intelligence-dashboard.onrender.com/](https://formula-1-racing-intelligence-dashboard.onrender.com/)
-* **📊 Visual BI Story:** [Tableau Public F1 Performance Story](https://public.tableau.com/views/Formula1PerformanceAnalytics2010-2024/Formula1PerformanceAnalytics2010-2024)
+* **📊 Visual BI Story:** [Tableau Public F1 Performance Analytics](https://public.tableau.com/views/Formula1PerformanceAnalytics2010-2024/Formula1PerformanceAnalytics2010-2024)
 
 ---
 
@@ -75,3 +75,32 @@ Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-/
 ├── package.json            # Project dependencies and script runner settings
 ├── tsconfig.json           # TypeScript configuration
 └── README.md               # Repository documentation
+---
+
+## ⚡ Operational Setup & Local Deployment
+
+Follow the instructions below to run the application locally on your machine:
+
+### Environment Prerequisites
+Ensure you have **Node.js** (v18.0.0 or higher) and **npm** installed on your system.
+
+### Execution Commands
+
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-.git](https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-.git)
+   cd Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-
+
+npm install
+npm run dev
+npm run build
+
+---
+
+## 👤 Author & Repository Credentials
+
+* **Developer & Author:** Mimansha Jhala
+* **Project Title:** Formula 1 Racing Intelligence Dashboard & Reports (2010–2026)
+* **GitHub Repository:** https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-
+* **Live Application:** https://formula-1-racing-intelligence-dashboard.onrender.com/
+*
