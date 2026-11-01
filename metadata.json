@@ -1,0 +1,6 @@
+{
+  "name": "F1 Racing Performance Analytics",
+  "description": "Formula 1 Racing Performance Analytics by Mimansha Jhala — interactive Tableau dashboard integration, circuits explorer, lap metrics, and race telemetry insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

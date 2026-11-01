@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-orbitron: "Orbitron", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-rajdhani: "Rajdhani", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-f1-red: #E10600;
+  --color-f1-red-hover: #B80500;
+  --color-f1-bg: #0B0B0F;
+  --color-f1-surface: #121218;
+  --color-f1-card: #161620;
+  --color-f1-border: #222230;
+}
+
+/* Base custom styles */
+html {
+  font-family: var(--font-sans);
+  background-color: #0B0B0F;
+  color: #F3F4F6;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: var(--font-rajdhani);
+}
+
+.font-racing {
+  font-family: var(--font-orbitron);
+}
+
+/* Carbon fiber subtle pattern */
+.bg-carbon {
+  background-color: #0B0B0F;
+  background-image: 
+    radial-gradient(rgba(225, 6, 0, 0.08) 1px, transparent 0),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 24px 24px, 40px 40px, 40px 40px;
+}
+
+/* Subtle racing speedlines */
+@keyframes speedlines {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.speedlines-bg {
+  background: radial-gradient(circle at 50% 20%, rgba(225, 6, 0, 0.12), transparent 60%),
+              radial-gradient(circle at 90% 80%, rgba(225, 6, 0, 0.05), transparent 50%),
+              linear-gradient(135deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+              linear-gradient(225deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+              linear-gradient(315deg, rgba(255,255,255,0.02) 25%, transparent 25%),
+              linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232330;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E10600;
+}

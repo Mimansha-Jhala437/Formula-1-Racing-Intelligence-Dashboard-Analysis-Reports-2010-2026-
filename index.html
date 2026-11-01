@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Racing Performance Analytics | Interactive Tableau Story</title>
+    <meta name="description" content="Formula 1 Racing Performance Analytics by Mimansha Jhala — interactive Tableau dashboard integration, circuits explorer, lap metrics, and race telemetry insights." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="F1 Racing Performance Analytics | Interactive Tableau Story" />
+    <meta property="og:description" content="Formula 1 Racing Performance Analytics by Mimansha Jhala — interactive Tableau dashboard integration, circuits explorer, lap metrics, and race telemetry insights." />
+    <meta property="og:image" content="/assets/aistudio/Screenshot_2026-11-01_092900_fd702f1f.png" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="F1 Racing Performance Analytics" />
+    <meta name="twitter:description" content="Explore drivers, teams, tyres, and 29 world circuits through interactive data visualization." />
+    <meta name="twitter:image" content="/assets/aistudio/Screenshot_2026-11-01_092900_fd702f1f.png" />
+    
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#0B0B0F" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0B0F'/%3E%3Cpath d='M6 22h6l8-12h-6L6 22z' fill='%23E10600'/%3E%3Cpath d='M16 22h6l4-6h-6l-4 6z' fill='%23ffffff'/%3E%3C/svg%3E" />
+
+    <!-- Google Fonts: Orbitron, Rajdhani, Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Official Tableau Embedding API v3 -->
+    <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+  </head>
+  <body class="bg-[#0B0B0F] text-[#F3F4F6] selection:bg-[#E10600] selection:text-white antialiased overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
