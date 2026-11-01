@@ -7,7 +7,7 @@
   </p>
 
   <p align="center">
-    <a href="https://formula-1-racing-intelligence-dashboard.onrender.com/">
+    <a href="https://formula-1-race-intelligence-dashboard.onrender.com/">
       <img src="https://img.shields.io/badge/Live%20Demo-Render-brightgreen?style=for-the-badge&logo=render" alt="Live Demo" />
     </a>
     <img src="https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react" alt="React" />
