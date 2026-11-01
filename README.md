@@ -27,8 +27,7 @@ The **Formula 1 Racing Intelligence Dashboard & Reports** is a high-performance 
 By integrating modern web engineering with advanced Business Intelligence (BI) dashboards, this application delivers real-time and historical insights on driver standings, constructor championships, pit-stop strategies, lap-time evolutions, and circuit telemetry.
 
 * **🌐 Live Deployment:** [https://formula-1-racing-intelligence-dashboard.onrender.com/](https://formula-1-racing-intelligence-dashboard.onrender.com/)
-* **📊 Visual BI Story:** [Tableau Public F1 Performance Analytics](https://public.tableau.com/views/Formula1PerformanceAnalytics2010-2024/Formula1PerformanceAnalytics2010-2024)
-
+* **📊 Visual BI Story:** [Tableau Public F1 Performance Analytics](https://public.tableau.com/app/profile/mimansha.jhala/viz/Formula1RacingPerformanceAnalyticsStoryDashboard/Story1)
 ---
 
 ## ✨ Key Capabilities & Functional Modules
