@@ -75,8 +75,8 @@ Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-/
 ├── package.json            # Project dependencies and script runner settings
 ├── tsconfig.json           # TypeScript configuration
 └── README.md               # Repository documentation
+```
 ---
-
 ## ⚡ Operational Setup & Local Deployment
 
 Follow the instructions below to run the application locally on your machine:
@@ -90,17 +90,26 @@ Ensure you have **Node.js** (v18.0.0 or higher) and **npm** installed on your sy
    ```bash
    git clone [https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-.git](https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-.git)
    cd Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-
+   
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   
+3. **Launch Local Server:**
+   ```bash
+   npm run dev
 
-npm install
-npm run dev
-npm run build
-
+4. **Build Production Assets:**
+   ```bash
+   npm run build
+   ```
 ---
 
 ## 👤 Author & Repository Credentials
 
 * **Developer & Author:** Mimansha Jhala
 * **Project Title:** Formula 1 Racing Intelligence Dashboard & Reports (2010–2026)
-* **GitHub Repository:** https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-
-* **Live Application:** https://formula-1-racing-intelligence-dashboard.onrender.com/
-*
+* **GitHub Repository:** [https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-](https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-)
+* **Live Application:** [https://formula-1-racing-intelligence-dashboard.onrender.com/](https://formula-1-racing-intelligence-dashboard.onrender.com/)
+
+
