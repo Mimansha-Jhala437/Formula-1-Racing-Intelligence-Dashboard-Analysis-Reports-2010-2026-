@@ -76,11 +76,19 @@ const AnimatedCounter: React.FC<CounterProps> = ({
   );
 };
 
-export const HeroSection: React.FC = () => {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+interface HeroSectionProps {
+  onSelectTab?: (tab: 'dashboard' | 'circuits' | 'overview' | 'insights' | 'skills') => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTab }) => {
+  const handleNav = (tabId: 'dashboard' | 'circuits') => {
+    if (onSelectTab) {
+      onSelectTab(tabId);
+    } else {
+      const el = document.getElementById(tabId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -133,7 +141,7 @@ export const HeroSection: React.FC = () => {
         {/* Two Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 sm:mb-20 w-full sm:w-auto">
           <button
-            onClick={() => scrollTo('dashboard')}
+            onClick={() => handleNav('dashboard')}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg bg-[#E10600] hover:bg-[#B80500] text-white text-sm sm:text-base font-semibold uppercase tracking-wider transition-all duration-200 shadow-[0_0_25px_rgba(225,6,0,0.45)] hover:shadow-[0_0_35px_rgba(225,6,0,0.65)] hover:-translate-y-0.5 active:translate-y-0"
           >
             <span>View Dashboard</span>
@@ -141,7 +149,7 @@ export const HeroSection: React.FC = () => {
           </button>
 
           <button
-            onClick={() => scrollTo('circuits')}
+            onClick={() => handleNav('circuits')}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg bg-[#14141E] hover:bg-[#1D1D2B] text-[#E2E8F0] hover:text-white text-sm sm:text-base font-semibold uppercase tracking-wider border border-[#2B2B3D] hover:border-[#E10600]/50 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           >
             <MapPin className="w-4 h-4 text-[#E10600]" />
@@ -179,7 +187,10 @@ export const HeroSection: React.FC = () => {
       {/* Down indicator */}
       <div className="flex justify-center mt-6">
         <button
-          onClick={() => scrollTo('overview')}
+          onClick={() => {
+            const el = document.getElementById('overview');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
           className="text-[#64748B] hover:text-[#E10600] transition-colors p-2"
           aria-label="Scroll to Project Overview"
         >

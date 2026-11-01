@@ -1,49 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink, Flag } from 'lucide-react';
+import { Menu, X, ExternalLink, LayoutDashboard, MapPin, Info, Lightbulb, Wrench } from 'lucide-react';
+
+export type NavTabId = 'dashboard' | 'circuits' | 'overview' | 'insights' | 'skills';
 
 interface NavbarProps {
+  activeTab: NavTabId;
+  onSelectTab: (tab: NavTabId) => void;
   tableauUrl: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ tableauUrl }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, tableauUrl }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Overview', href: '#overview' },
-    { name: 'Dashboard', href: '#dashboard' },
-    { name: 'Circuits', href: '#circuits' },
-    { name: 'Insights', href: '#insights' },
-    { name: 'Skills', href: '#skills' },
+  const navLinks: { id: NavTabId; name: string; icon: React.FC<{ className?: string }> }[] = [
+    { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
+    { id: 'circuits', name: 'Circuits', icon: MapPin },
+    { id: 'overview', name: 'Overview', icon: Info },
+    { id: 'insights', name: 'Insights', icon: Lightbulb },
+    { id: 'skills', name: 'Skills', icon: Wrench },
   ];
 
-  const handleLinkClick = () => {
+  const handleTabClick = (tabId: NavTabId) => {
+    onSelectTab(tabId);
     setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0B0B0F]/90 backdrop-blur-md border-b border-[#222230] shadow-[0_4px_24px_rgba(0,0,0,0.6)]'
-          : 'bg-transparent border-b border-transparent'
+          ? 'bg-[#0B0B0F]/95 backdrop-blur-md border-b border-[#222230] shadow-[0_4px_24px_rgba(0,0,0,0.6)]'
+          : 'bg-[#0B0B0F]/80 backdrop-blur-sm border-b border-[#1C1C26]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-8">
+        <div className="flex items-center justify-between h-20 gap-6">
           {/* Zone 1: Brand Wordmark (Single element) */}
-          <a
-            href="#"
-            className="flex items-center gap-3 text-white group whitespace-nowrap shrink-0"
-            aria-label="F1 Racing Performance Analytics Home"
+          <button
+            onClick={() => handleTabClick('dashboard')}
+            className="flex items-center gap-3 text-white group whitespace-nowrap shrink-0 text-left focus:outline-none"
+            aria-label="F1 Racing Performance Analytics - Open Dashboard"
           >
             <div className="w-10 h-10 rounded bg-[#E10600] flex items-center justify-center font-racing font-extrabold text-white text-lg tracking-wider shadow-[0_0_15px_rgba(225,6,0,0.5)] group-hover:scale-105 transition-transform">
               F1
@@ -56,20 +62,31 @@ export const Navbar: React.FC<NavbarProps> = ({ tableauUrl }) => {
                 Performance Intelligence
               </span>
             </div>
-          </a>
+          </button>
 
-          {/* Zone 2: Navigation Links (4-5 items, single-line text) */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-[#94A3B8]">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="hover:text-white transition-colors py-1 whitespace-nowrap shrink-0 relative group"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#E10600] transition-all duration-200 group-hover:w-full" />
-              </a>
-            ))}
+          {/* Zone 2: Navigation Tabs (Dashboard is default) */}
+          <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+            {navLinks.map((link) => {
+              const isActive = activeTab === link.id;
+              const IconComponent = link.icon;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleTabClick(link.id)}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap shrink-0 relative ${
+                    isActive
+                      ? 'text-white bg-[#1A1A24] border border-[#2D2D3E] shadow-sm font-semibold'
+                      : 'text-[#94A3B8] hover:text-white hover:bg-[#14141E]'
+                  }`}
+                >
+                  <IconComponent className={`w-4 h-4 ${isActive ? 'text-[#E10600]' : 'text-[#64748B]'}`} />
+                  <span>{link.name}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#E10600] rounded-full" />
+                  )}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Zone 3: Primary CTA */}
@@ -101,17 +118,33 @@ export const Navbar: React.FC<NavbarProps> = ({ tableauUrl }) => {
 
       {/* Mobile dropdown menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#121218] border-b border-[#222230] px-4 pt-3 pb-6 space-y-2 animate-fadeIn">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={handleLinkClick}
-              className="block px-3 py-2.5 rounded text-base font-medium text-[#E2E8F0] hover:text-white hover:bg-[#1D1D28] transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="md:hidden bg-[#121218] border-b border-[#222230] px-4 pt-3 pb-6 space-y-1.5 animate-fadeIn">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B] px-3 py-1">
+            Navigation Views
+          </div>
+          {navLinks.map((link) => {
+            const isActive = activeTab === link.id;
+            const IconComponent = link.icon;
+            return (
+              <button
+                key={link.id}
+                onClick={() => handleTabClick(link.id)}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded text-base font-medium transition-colors ${
+                  isActive
+                    ? 'text-white bg-[#1E1E2C] border-l-2 border-[#E10600]'
+                    : 'text-[#E2E8F0] hover:text-white hover:bg-[#181822]'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <IconComponent className={`w-4 h-4 ${isActive ? 'text-[#E10600]' : 'text-[#64748B]'}`} />
+                  <span>{link.name}</span>
+                </div>
+                {isActive && (
+                  <span className="text-[11px] font-mono text-[#E10600] uppercase tracking-wider">Active</span>
+                )}
+              </button>
+            );
+          })}
           <div className="pt-3 border-t border-[#222230]">
             <a
               href={tableauUrl}
