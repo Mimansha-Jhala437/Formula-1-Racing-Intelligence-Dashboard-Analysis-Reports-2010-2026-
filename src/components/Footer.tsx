@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({
             </a>
 
             <a
-              href="https://github.com/mimanshajhala"
+              href="https://github.com/Mimansha-Jhala437/Formula-1-Racing-Intelligence-Dashboard-Analysis-Reports-2010-2026-"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#121218] border border-[#222230] text-white hover:text-[#E10600] hover:border-[#E10600]/40 transition-colors"

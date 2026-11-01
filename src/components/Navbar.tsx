@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink, LayoutDashboard, MapPin, Info, Lightbulb, Wrench } from 'lucide-react';
+import { Menu, X, ExternalLink, LayoutDashboard, MapPin, Home, Lightbulb, Wrench, ArrowRight } from 'lucide-react';
 
-export type NavTabId = 'dashboard' | 'circuits' | 'overview' | 'insights' | 'skills';
+export type NavTabId = 'home' | 'dashboard' | 'circuits' | 'insights' | 'skills';
 
 interface NavbarProps {
   activeTab: NavTabId;
@@ -22,9 +22,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, tableauU
   }, []);
 
   const navLinks: { id: NavTabId; name: string; icon: React.FC<{ className?: string }> }[] = [
+    { id: 'home', name: 'Home', icon: Home },
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
     { id: 'circuits', name: 'Circuits', icon: MapPin },
-    { id: 'overview', name: 'Overview', icon: Info },
     { id: 'insights', name: 'Insights', icon: Lightbulb },
     { id: 'skills', name: 'Skills', icon: Wrench },
   ];
@@ -40,16 +40,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, tableauU
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-[#0B0B0F]/95 backdrop-blur-md border-b border-[#222230] shadow-[0_4px_24px_rgba(0,0,0,0.6)]'
-          : 'bg-[#0B0B0F]/80 backdrop-blur-sm border-b border-[#1C1C26]'
+          : 'bg-[#0B0B0F]/85 backdrop-blur-sm border-b border-[#1C1C26]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-6">
-          {/* Zone 1: Brand Wordmark (Single element) */}
+          {/* Zone 1: Brand Wordmark (Clicking returns to Home /) */}
           <button
-            onClick={() => handleTabClick('dashboard')}
+            onClick={() => handleTabClick('home')}
             className="flex items-center gap-3 text-white group whitespace-nowrap shrink-0 text-left focus:outline-none"
-            aria-label="F1 Racing Performance Analytics - Open Dashboard"
+            aria-label="F1 Racing Performance Analytics - Return to Home"
           >
             <div className="w-10 h-10 rounded bg-[#E10600] flex items-center justify-center font-racing font-extrabold text-white text-lg tracking-wider shadow-[0_0_15px_rgba(225,6,0,0.5)] group-hover:scale-105 transition-transform">
               F1
@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, tableauU
             </div>
           </button>
 
-          {/* Zone 2: Navigation Tabs (Dashboard is default) */}
+          {/* Zone 2: Navigation Tabs (Home is default route /) */}
           <nav className="hidden md:flex items-center gap-1 sm:gap-2">
             {navLinks.map((link) => {
               const isActive = activeTab === link.id;
@@ -89,17 +89,27 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, tableauU
             })}
           </nav>
 
-          {/* Zone 3: Primary CTA */}
+          {/* Zone 3: Primary CTA to Open Dashboard */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <a
-              href={tableauUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded text-xs font-semibold uppercase tracking-wider text-white bg-[#E10600] hover:bg-[#B80500] transition-colors shadow-[0_0_16px_rgba(225,6,0,0.35)] whitespace-nowrap shrink-0 active:scale-95"
-            >
-              <span>Tableau Story</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            {activeTab !== 'dashboard' ? (
+              <button
+                onClick={() => handleTabClick('dashboard')}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded text-xs font-semibold uppercase tracking-wider text-white bg-[#E10600] hover:bg-[#B80500] transition-colors shadow-[0_0_16px_rgba(225,6,0,0.35)] whitespace-nowrap shrink-0 active:scale-95 cursor-pointer"
+              >
+                <span>View Dashboard</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            ) : (
+              <a
+                href={tableauUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded text-xs font-semibold uppercase tracking-wider text-white bg-[#1C1C28] hover:bg-[#282838] border border-[#333346] transition-colors whitespace-nowrap shrink-0 active:scale-95"
+              >
+                <span>Tableau Public</span>
+                <ExternalLink className="w-3.5 h-3.5 text-[#E10600]" />
+              </a>
+            )}
           </div>
 
           {/* Mobile hamburger menu toggle */}
@@ -146,15 +156,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, tableauU
             );
           })}
           <div className="pt-3 border-t border-[#222230]">
-            <a
-              href={tableauUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => handleTabClick('dashboard')}
               className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded text-sm font-semibold uppercase tracking-wider text-white bg-[#E10600] hover:bg-[#B80500] transition-colors shadow-lg"
             >
-              <span>Open Tableau Public</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
+              <span>Launch Interactive Dashboard</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       )}

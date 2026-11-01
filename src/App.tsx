@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, NavTabId } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { AboutSection } from './components/AboutSection';
+import { HomePage } from './components/HomePage';
 import { TableauEmbed } from './components/TableauEmbed';
 import { CircuitsExplorer } from './components/CircuitsExplorer';
 import { KeyInsights } from './components/KeyInsights';
@@ -16,22 +15,21 @@ const TABLEAU_STORY_SRC =
 const TABLEAU_PROFILE_URL =
   'https://public.tableau.com/app/profile/mimansha.jhala';
 
-const VALID_TABS: NavTabId[] = ['dashboard', 'circuits', 'overview', 'insights', 'skills'];
+const VALID_TABS: NavTabId[] = ['home', 'dashboard', 'circuits', 'insights', 'skills'];
 
 export default function App() {
-  // Default landing route is explicitly 'dashboard' (the Tableau / F1 Race Intelligence Dashboard view)
-  const [activeTab, setActiveTab] = useState<NavTabId>('dashboard');
+  // Default landing route is explicitly 'home' (the separate Home/Landing page)
+  const [activeTab, setActiveTab] = useState<NavTabId>('home');
 
   useEffect(() => {
-    // Check initial hash on mount
+    // Check initial URL hash on mount
     const checkHash = () => {
       const hash = window.location.hash.replace('#', '').toLowerCase() as NavTabId;
       if (VALID_TABS.includes(hash)) {
         setActiveTab(hash);
       } else {
-        // If visiting root URL (/) or empty hash, default to dashboard!
-        setActiveTab('dashboard');
-        // If there's no hash, set it or keep root clean while dashboard renders
+        // If visiting root URL (/) or empty hash, default to 'home'!
+        setActiveTab('home');
       }
     };
 
@@ -51,21 +49,34 @@ export default function App() {
 
   const handleSelectTab = (tab: NavTabId) => {
     setActiveTab(tab);
-    window.location.hash = tab;
+    if (tab === 'home') {
+      // Clean root URL for home
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname);
+      }
+    } else {
+      window.location.hash = tab;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen bg-[#0B0B0F] text-[#F3F4F6] flex flex-col font-sans selection:bg-[#E10600] selection:text-white">
-      {/* Top Navbar with active tab state, defaulting to Dashboard */}
+      {/* Top Navbar with active tab state, defaulting to Home */}
       <Navbar
         activeTab={activeTab}
         onSelectTab={handleSelectTab}
         tableauUrl={TABLEAU_PUBLIC_URL}
       />
 
-      {/* Main Content Area: Default root view opens Tableau Dashboard */}
+      {/* Main Content Area: Default root view (/) opens Home / Landing page */}
       <main className="flex-1">
+        {/* 1. Home / Landing Page (Default route /) */}
+        {activeTab === 'home' && (
+          <HomePage onNavigate={handleSelectTab} tableauUrl={TABLEAU_PUBLIC_URL} />
+        )}
+
+        {/* 2. Tableau Story Dashboard View (Accessible via 'Dashboard' or 'View Dashboard') */}
         {activeTab === 'dashboard' && (
           <TableauEmbed
             storySrc={TABLEAU_STORY_SRC}
@@ -75,25 +86,21 @@ export default function App() {
           />
         )}
 
+        {/* 3. Circuits Explorer */}
         {activeTab === 'circuits' && (
           <div className="pt-20">
             <CircuitsExplorer />
           </div>
         )}
 
-        {activeTab === 'overview' && (
-          <div>
-            <HeroSection onSelectTab={handleSelectTab} />
-            <AboutSection />
-          </div>
-        )}
-
+        {/* 4. Key Strategic Insights */}
         {activeTab === 'insights' && (
           <div className="pt-20">
             <KeyInsights />
           </div>
         )}
 
+        {/* 5. Tools & Skills */}
         {activeTab === 'skills' && (
           <div className="pt-20">
             <ToolsSkills />

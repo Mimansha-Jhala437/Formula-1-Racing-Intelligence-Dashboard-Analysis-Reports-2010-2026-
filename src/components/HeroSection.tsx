@@ -76,8 +76,10 @@ const AnimatedCounter: React.FC<CounterProps> = ({
   );
 };
 
+import { NavTabId } from './Navbar';
+
 interface HeroSectionProps {
-  onSelectTab?: (tab: 'dashboard' | 'circuits' | 'overview' | 'insights' | 'skills') => void;
+  onSelectTab?: (tab: NavTabId) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectTab }) => {

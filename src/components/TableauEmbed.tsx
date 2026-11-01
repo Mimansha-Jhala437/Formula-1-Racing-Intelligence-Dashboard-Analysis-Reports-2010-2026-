@@ -460,13 +460,13 @@ export const TableauEmbed: React.FC<TableauEmbedProps> = ({
               </button>
 
               <button
-                onClick={() => onSelectTab('overview')}
+                onClick={() => onSelectTab('home')}
                 className="flex items-center justify-between p-4 rounded-xl bg-[#121218] border border-[#20202E] hover:border-[#E10600]/50 transition-all text-left group"
               >
                 <div>
                   <div className="flex items-center gap-2 text-[#E10600] font-heading font-semibold text-sm">
                     <Info className="w-4 h-4" />
-                    <span>Project Overview & KPIs</span>
+                    <span>Home & Project Overview</span>
                   </div>
                   <p className="text-xs text-[#8E8EA0] mt-1">
                     Season milestones, 4 core dashboard pillars, and methodology.
